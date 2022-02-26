@@ -1,4 +1,7 @@
 <?php
+'edate'=>current_time('mysql')); // WordPress 
+
+date('Y-m-d H:i:s') // Php
 
 $todayDate = date('Y-m-d 23:59:59');	//15 march 2014 23:59:50		
 $yesterdayDate = date('Y-m-d 23:59:59', mktime(0, 0, 0, date("m") , date("d") - 1, date("Y")));	 //14 march 2014 23:59:59
