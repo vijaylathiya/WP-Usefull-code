@@ -1,4 +1,5 @@
 <?php
+// Bzuriya add Product Type Custom Field - Is Packaged Product and Given Quick Edit, Bulk Edit option with Manage Multi language edit same time.
 //add custom package option at shipping tab in product
 add_action( 'woocommerce_product_options_shipping', 'ls_shipping_option_to_products');
 function ls_shipping_option_to_products(){
