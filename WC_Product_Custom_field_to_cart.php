@@ -84,13 +84,13 @@ function ls_fn_add_ls_banner_size_text_to_order_items( $item, $cart_item_key, $v
     }
     
     if ( isset($values['ls_banner_size']) && ! empty($values['ls_banner_size'])  ) 
-        $item->add_meta_data( __( '_Banner Size', 'iconic' ), $values['ls_banner_size'] );
+        $item->add_meta_data( __( 'Banner Size', 'iconic' ), $values['ls_banner_size'] );
     
     if ( isset($values['custom_data']['age']) && ! empty($values['custom_data']['age'])  ) 
-        $item->add_meta_data( __( '_Age', 'iconic' ), $values['custom_data']['age'] );
+        $item->add_meta_data( __( 'Age', 'iconic' ), $values['custom_data']['age'] );
 
     if ( isset($values['custom_data']['quality']) && ! empty($values['custom_data']['quality'])  ) 
-        $item->add_meta_data( __( '_Quantity', 'iconic' ), $values['custom_data']['quality'] );
+        $item->add_meta_data( __( 'Quantity', 'iconic' ), $values['custom_data']['quality'] );
 
 }
 
