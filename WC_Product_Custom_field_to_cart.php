@@ -88,8 +88,8 @@ function ls_fn_add_ls_banner_size_text_to_order_items( $item, $cart_item_key, $v
     
     if ( isset($values['custom_data']['age']) && ! empty($values['custom_data']['age'])  ) 
         $item->add_meta_data( __( '_Age', 'iconic' ), $values['custom_data']['age'] );
-    
-    if ( isset($values['custom_data']['quality']) && ! empty($cart_item['custom_data']['quality'])  ) {
+
+    if ( isset($values['custom_data']['quality']) && ! empty($values['custom_data']['quality'])  ) 
         $item->add_meta_data( __( '_Quantity', 'iconic' ), $values['custom_data']['quality'] );
 
 }
