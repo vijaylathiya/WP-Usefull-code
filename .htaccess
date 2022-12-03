@@ -1,0 +1,143 @@
+#Redirect OLD Domain URL to new Domain
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^olddomain.com$
+RewriteRule (.*) https://newdomain.co/$1 [R=301,L]  
+</IfModule>
+
+
+
+RewriteCond %{HTTP_HOST} ^olddomain.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www.olddomain.com$
+RewriteRule (.*)$ https://www.newdomain.co.uk/$1 [L,R=301,NC]
+  
+  
+
+#Redirect all Subdomain based url to new or main domain
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^subdomain\.domainname\.com$ [OR]
+RewriteRule (.*)$ https://domainname.com/$1 [R=301,L]
+
+
+
+#redirect www URLs to non-www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.lathiyasolutions.com [NC]
+RewriteRule ^(.*)$ https://lathiyasolutions.com/$1 [L,R=301]
+
+
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^domain.com [NC]
+RewriteRule ^(.*)$ https://www.domain.com/$1 [L,R=301,NC]
+
+
+# for mix content issue 
+<IfModule mod_rewrite.c>
+
+
+RewriteEngine on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# Redirect from HTTPS to HTTP
+RewriteCond %{HTTP:X-Forwarded-Proto} =https
+RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+#ssl 
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://onthegas.org/$1 [R=301,L]
+
+
+<IfModule mod_rewrite.c>
+Redirect 301 /2016/12/10/hello-world/ https://www.domain.com
+Redirect 301 /sitemap.xml https://www.domain.com/sitemap_index.xml
+</IfModule>
+
+
+# BEGIN All In One WP Security
+#AIOWPS_BLOCK_SPAMBOTS_START
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} POST
+RewriteCond %{REQUEST_URI} ^(.*)?wp-comments-post\.php(.*)$
+RewriteCond %{HTTP_REFERER} !^http(s)?://(.*)?\.domain\.com [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^$
+RewriteRule .* http://127.0.0.1 [L]
+</IfModule>
+#AIOWPS_BLOCK_SPAMBOTS_END
+# END All In One WP Security
+
+
+
+
+
+
+# BEGIN WP Performance Score Booster Settings
+
+## BEGIN Enable GZIP Compression ##
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/x-httpd-php
+AddOutputFilterByType DEFLATE application/x-httpd-fastphp
+AddOutputFilterByType DEFLATE image/svg+xml
+SetOutputFilter DEFLATE
+</IfModule>
+## END Enable GZIP Compression ##
+
+
+## BEGIN Vary: Accept-Encoding Header ##
+<IfModule mod_headers.c>
+<FilesMatch "\.(js|css|xml|gz)$">
+Header append Vary: Accept-Encoding
+</FilesMatch>
+</IfModule>
+## END Vary: Accept-Encoding Header ##
+
+
+## BEGIN Expires Caching (Leverage Browser Caching) ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 2 week"
+ExpiresByType image/jpeg "access 2 week"
+ExpiresByType image/gif "access 2 week"
+ExpiresByType image/png "access 2 week"
+ExpiresByType text/css "access 2 week"
+ExpiresByType application/pdf "access 2 week"
+ExpiresByType text/x-javascript "access 2 week"
+ExpiresByType application/x-shockwave-flash "access 2 week"
+ExpiresByType image/x-icon "access 2 week"
+ExpiresDefault "access 2 week"
+</IfModule>
+## END Expires Caching (Leverage Browser Caching) ##
+
+# END WP Performance Score Booster Settings
+
+
+# If above Method for Leverage Browser cache not work than try with following 
+<filesMatch ".(css|jpg|jpeg|png|gif|js|ico)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>
+
+
+# for cloudflare active server. see https://community.cloudflare.com/t/leverage-browser-caching-and-specify-a-cache/3616/3
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 week"
+</IfModule>
+
+
+Redirection Rules
+1. https://domain.com/produit/no-gym-no-problem/?lang=de&amp;currency=AUD to  https://domain.com/de/program/no-gym-no-problem/
+Redirect 301 /produit/no-gym-no-problem/ /de/program/no-gym-no-problem/
